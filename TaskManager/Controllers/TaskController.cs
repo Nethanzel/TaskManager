@@ -3,6 +3,7 @@ using CrystalDecisions.Shared;
 using Microsoft.AspNetCore.Mvc;
 using TaskManager.Data.DB;
 using TaskManager.Data.Models;
+using TaskManager.Models;
 
 namespace TaskManager.Controllers
 {
@@ -45,7 +46,12 @@ namespace TaskManager.Controllers
             }
             catch (Exception e)
             {
-                return View(e);
+                ErrorViewModel details = new ErrorViewModel()
+                {
+                    RequestId = "",
+
+                };
+                return View("Error", details);
             }
 
         }
@@ -75,7 +81,12 @@ namespace TaskManager.Controllers
             }
             catch
             {
-                return View();
+                ErrorViewModel details = new ErrorViewModel()
+                {
+                    RequestId = "",
+
+                };
+                return View("Error", details);
             }
         }
 
@@ -108,24 +119,39 @@ namespace TaskManager.Controllers
             }
             catch
             {
-                return View();
+                ErrorViewModel details = new ErrorViewModel()
+                {
+                    RequestId = "",
+
+                };
+                return View("Error", details);
             }
         }
 
         [HttpGet]
         public ActionResult TasksPDF()
         {
-            List<Tasks> tasks = _db.getAllTasks();
+            try
+            {
+                List<Tasks> tasks = _db.getAllTasks();
 
-            ReportDocument document = new ReportDocument();
-            document.Load("TasksReport.rpt");
-            document.SetDataSource(tasks);
+                ReportDocument document = new ReportDocument();
+                document.Load("TasksReport.rpt");
+                document.SetDataSource(tasks);
 
-            Response.Headers.Clear();
-
-            Stream stream = document.ExportToStream(ExportFormatType.PortableDocFormat);
-            stream.Seek(0, SeekOrigin.Begin);
-            return File(stream, "application/pdf", "TasksList.pdf");
+                Stream stream = document.ExportToStream(ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf", "TasksList.pdf");
+            }
+            catch (Exception ex) 
+            {
+                ErrorViewModel details = new ErrorViewModel()
+                { 
+                    RequestId = "",
+                    
+                };
+                return View("Error", details);
+            }
         }
     }
 }
