@@ -7,18 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CrystalDecisions.CrystalReports.Engine" Version="1.0.0">
-      <GeneratePathProperty>True</GeneratePathProperty>
-    </PackageReference>
-    <PackageReference Include="CrystalDecisions.Shared" Version="1.0.0">
-      <GeneratePathProperty>True</GeneratePathProperty>
-    </PackageReference>
-    <PackageReference Include="CrystalReports.ReportAppServer.ClientDoc" Version="13.0.4003">
-      <GeneratePathProperty>True</GeneratePathProperty>
-    </PackageReference>
-    <PackageReference Include="CrystalReports.ReportAppServer.DataSetConversion" Version="13.0.4003">
-      <GeneratePathProperty>True</GeneratePathProperty>
-    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -28,15 +16,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.ReportingServices.ReportViewerControl.WebForms" Version="150.1586.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.14" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TaskManager.Data\TaskManager.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Reports\" />
   </ItemGroup>
 
 </Project>

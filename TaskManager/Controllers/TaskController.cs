@@ -1,6 +1,5 @@
-﻿using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Reporting.WebForms;
 using TaskManager.Data.DB;
 using TaskManager.Data.Models;
 using TaskManager.Models;
@@ -131,27 +130,19 @@ namespace TaskManager.Controllers
         [HttpGet]
         public ActionResult TasksPDF()
         {
-            try
-            {
-                List<Tasks> tasks = _db.getAllTasks();
+            //try
+            //{
+            //}
+            //catch (Exception ex) 
+            //{
+            //    ErrorViewModel details = new ErrorViewModel()
+            //    { 
+            //        RequestId = "",
 
-                ReportDocument document = new ReportDocument();
-                document.Load("TasksReport.rpt");
-                document.SetDataSource(tasks);
-
-                Stream stream = document.ExportToStream(ExportFormatType.PortableDocFormat);
-                stream.Seek(0, SeekOrigin.Begin);
-                return File(stream, "application/pdf", "TasksList.pdf");
-            }
-            catch (Exception ex) 
-            {
-                ErrorViewModel details = new ErrorViewModel()
-                { 
-                    RequestId = "",
-                    
-                };
-                return View("Error", details);
-            }
+            //    };
+            //    return View("Error", details);
+            //}
+            throw new NotImplementedException();
         }
     }
 }
